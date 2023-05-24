@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/purple_700">
+
+    <!-- Header -->
+    <TextView
+        android:id="@+id/headerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How To Play?"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Content -->
+    <TextView
+        android:id="@+id/instructionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CHOOSE THE LETTER,\nIF YOU ARE CORRECT YOU CAN BE HAPPY.\nIF YOU ARE WRONG WE WILL START BUILDING GALLOWS.\nIF GALLOW WILL BE FINISHED YOU WILL HANG.\nIF YOU WILL WIN YOU WILL GET THE POINTS.\n\nIF YOU ARE BORED JUST LEAVE."
+        android:textSize="18sp"
+        android:textColor="#666666"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_below="@id/headerTextView" />
+
+</RelativeLayout>
