@@ -51,3 +51,4 @@ fabric.properties
 *.log
 *.bak
 *.swp
+.gradle/buildOutputCleanup/cache.properties
