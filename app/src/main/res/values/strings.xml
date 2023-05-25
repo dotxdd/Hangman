@@ -11,7 +11,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-<<<<<<< HEAD
     <string name="backButton">Back</string>
     <string name="lost">You lost!</string>
     <string name="won">You won!</string>
@@ -40,9 +39,6 @@
     <string name="y">Y</string>
     <string name="z">Z</string>
     <string name="descriptionImage">HangMan</string>
-=======
     <string name="open">Open</string>
     <string name="close">Close</string>
-
->>>>>>> f19e34138ecf21ab86070395a0b508731123c19d
 </resources>
