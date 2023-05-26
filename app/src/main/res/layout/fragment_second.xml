@@ -22,45 +22,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:background="@drawable/game10"
+        android:background="@drawable/game1"
         app:layout_constraintTop_toTopOf="@id/buttonPrevious"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="39dp"
         android:contentDescription="@string/descriptionImage" />
 
-    <TextView
-        android:id="@+id/lostGameView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/lost"
-        android:textColor="#ff0000"
-        android:textSize="45sp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="243dp"
-        android:visibility="gone"
-        tools:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/imgView"
-        app:layout_constraintEnd_toEndOf="@id/imgView"
-        app:layout_constraintStart_toStartOf="@id/imgView"
-        app:layout_constraintTop_toTopOf="@id/imgView"
-        />
+
     <TextView
         android:id="@+id/generatedWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
         android:textColor="#00ff00"
         android:textSize="45sp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintBottom_toBottomOf="@id/imgView"
-        app:layout_constraintEnd_toEndOf="@id/imgView"
+        app:layout_constraintTop_toBottomOf="@id/imgView"
         app:layout_constraintStart_toStartOf="@id/imgView"
-        app:layout_constraintTop_toTopOf="@id/imgView"
-        />
+        app:layout_constraintEnd_toEndOf="@id/imgView" />
 
     <TextView
         android:id="@+id/wonGameView"
@@ -140,6 +119,7 @@
 
         <TextView
             android:id="@+id/a"
+            android:tag="a"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -150,6 +130,7 @@
 
         <TextView
             android:id="@+id/b"
+            android:tag="b"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -161,6 +142,7 @@
 
         <TextView
             android:id="@+id/c"
+            android:tag="c"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -172,6 +154,7 @@
 
         <TextView
             android:id="@+id/d"
+            android:tag="d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -183,6 +166,7 @@
 
         <TextView
             android:id="@+id/e"
+            android:tag="e"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -194,6 +178,7 @@
 
         <TextView
             android:id="@+id/f"
+            android:tag="f"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -205,6 +190,7 @@
 
         <TextView
             android:id="@+id/g"
+            android:tag="g"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -216,6 +202,7 @@
 
         <TextView
             android:id="@+id/h"
+            android:tag="h"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -227,6 +214,7 @@
 
         <TextView
             android:id="@+id/i"
+            android:tag="i"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -238,6 +226,7 @@
 
         <TextView
             android:id="@+id/j"
+            android:tag="j"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -249,6 +238,7 @@
 
         <TextView
             android:id="@+id/k"
+            android:tag="k"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -260,6 +250,7 @@
 
         <TextView
             android:id="@+id/l"
+            android:tag="l"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -271,6 +262,7 @@
 
         <TextView
             android:id="@+id/m"
+            android:tag="m"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -282,6 +274,7 @@
 
         <TextView
             android:id="@+id/n"
+            android:tag="n"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -293,6 +286,7 @@
 
         <TextView
             android:id="@+id/o"
+            android:tag="o"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -304,6 +298,7 @@
 
         <TextView
             android:id="@+id/p"
+            android:tag="p"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -315,6 +310,7 @@
 
         <TextView
             android:id="@+id/r"
+            android:tag="r"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -326,6 +322,7 @@
 
         <TextView
             android:id="@+id/s"
+            android:tag="s"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -337,6 +334,7 @@
 
         <TextView
             android:id="@+id/t"
+            android:tag="t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -348,6 +346,7 @@
 
         <TextView
             android:id="@+id/u"
+            android:tag="u"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -360,6 +359,7 @@
 
         <TextView
             android:id="@+id/w"
+            android:tag="w"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -371,6 +371,7 @@
 
         <TextView
             android:id="@+id/x"
+            android:tag="x"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -381,6 +382,7 @@
             tools:ignore="MissingConstraints"/>
         <TextView
             android:id="@+id/y"
+            android:tag="y"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -392,6 +394,7 @@
 
         <TextView
             android:id="@+id/z"
+            android:tag="z"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
