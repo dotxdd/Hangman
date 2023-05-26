@@ -53,4 +53,8 @@
     <string name="score">Score</string>
     <string name="textHang">Do you wanna hang around?</string>
     <string name="hang">Hang</string>
+    <string name="userNameText">Write your username:</string>
+    <string name="userTextField">Set your username</string>
+    <string name="plus">+</string>
+    <string name="create">Let start!</string>
 </resources>
