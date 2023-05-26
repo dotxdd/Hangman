@@ -10,22 +10,50 @@
         android:id="@+id/headerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CREATORS"
-        android:textSize="24sp"
+        android:text="@string/creators"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="#333333"
+        android:textColor="@color/white"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="100dp" />
 
     <!-- Content -->
     <TextView
         android:id="@+id/instructionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MACIEJ OPIELOWSKI AND GABRIEL MOSKWA"
-        android:textSize="18sp"
-        android:textColor="#666666"
+        android:text="@string/authors"
+        android:textSize="24sp"
+        android:textColor="@color/white"
         android:lineSpacingMultiplier="1.5"
-        android:layout_below="@id/headerTextView" />
+        android:layout_below="@id/headerTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        />
+
+    <TextView
+        android:id="@+id/instructionTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/authors1"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_below="@id/instructionTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        />
+
+    <TextView
+        android:id="@+id/instructionTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/authors2"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_below="@id/instructionTextView1"
+        android:layout_centerHorizontal="true"
+        />
 
 </RelativeLayout>

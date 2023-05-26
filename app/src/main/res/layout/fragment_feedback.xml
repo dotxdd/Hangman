@@ -13,21 +13,27 @@
         android:layout_marginTop="120dp"
         android:id="@+id/editTextTextEmailAddress3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress" />
+        android:hint="@string/email"
+        android:textColor="@color/white"
+        android:inputType="textEmailAddress"
+        android:autofillHints="emailAddress"
+        />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_below="@id/editTextTextEmailAddress3"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Your ideas/ your opinion"
-        android:inputType="textMultiLine" />
+        android:hint="@string/msg"
+        android:textColor="@color/white"
+        android:inputType="textMultiLine"
+        android:autofillHints="message"
+        />
 
     <Button
         android:id="@+id/sendButton"
@@ -35,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextTextMultiLine"
         android:layout_marginTop="16dp"
-        android:text="Send" />
+        android:layout_centerHorizontal="true"
+        android:text="@string/send" />
 
 </RelativeLayout>

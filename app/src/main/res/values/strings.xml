@@ -36,9 +36,21 @@
     <string name="t">T</string>
     <string name="u">U</string>
     <string name="w">W</string>
+    <string name="x">X</string>
     <string name="y">Y</string>
     <string name="z">Z</string>
     <string name="descriptionImage">HangMan</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="email">Email</string>
+    <string name="msg">Your ideas/ your opinion</string>
+    <string name="send">Send</string>
+    <string name="creators">CREATORS</string>
+    <string name="authors">MACIEJ OPIELOWSKI</string>
+    <string name="authors1">&amp;</string>
+    <string name="authors2">GABRIEL MOSKWA</string>
+    <string name="profile">Profile</string>
+    <string name="score">Score</string>
+    <string name="textHang">Do you wanna hang around?</string>
+    <string name="hang">Hang</string>
 </resources>
