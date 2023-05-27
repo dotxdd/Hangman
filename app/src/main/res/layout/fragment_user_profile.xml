@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserProfileFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UserProfileFragment"
+    android:background="@color/purple_700">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/userNameText"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:id="@+id/textUserSet"
+        />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/userSetField"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textUserSet"
+        android:layout_marginTop="100dp"
+        android:layout_marginHorizontal="50dp"
+        android:textColor="@color/white"
+        android:hint="@string/userTextField"
+        android:ems="10"
+        android:inputType="text"
+        />
+
+    <Button
+        android:id="@+id/addPictureButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/plus"
+        android:textSize="23sp"
+        android:layout_below="@+id/userSetField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create"
+        android:layout_below="@+id/addPictureButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:padding="15dp"
+        />
+
+</RelativeLayout>

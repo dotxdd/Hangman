@@ -1,5 +1,6 @@
 package com.example.hangmangame
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.hangmangame.databinding.FragmentSecondBinding
 import okhttp3.*
+import okhttp3.internal.wait
 import java.io.IOException
 
 /**
@@ -27,6 +29,7 @@ class SecondFragment : Fragment() {
     ): View? {
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         Log.i("SecondFragment", "t0")
+
         return binding.root
     }
 
@@ -35,7 +38,40 @@ class SecondFragment : Fragment() {
         Log.i("SecondFragment", "t1")
         // Pobieranie losowego słowa z API
         fetchRandomWord()
+        Thread.sleep(1100)
         Log.i("SecondFragment", "t2")
+        val generatedWordTextView = binding.generatedWord
+        val alphabetButtonClickListener = AlphabetButtonClickListener(
+            randomWord ?: "",
+            binding.generatedWord,
+            binding.imgView
+        )
+
+        binding.a.setOnClickListener(alphabetButtonClickListener)
+        binding.b.setOnClickListener(alphabetButtonClickListener)
+        binding.c.setOnClickListener(alphabetButtonClickListener)
+        binding.d.setOnClickListener(alphabetButtonClickListener)
+        binding.e.setOnClickListener(alphabetButtonClickListener)
+        binding.f.setOnClickListener(alphabetButtonClickListener)
+        binding.g.setOnClickListener(alphabetButtonClickListener)
+        binding.h.setOnClickListener(alphabetButtonClickListener)
+        binding.i.setOnClickListener(alphabetButtonClickListener)
+        binding.j.setOnClickListener(alphabetButtonClickListener)
+        binding.k.setOnClickListener(alphabetButtonClickListener)
+        binding.l.setOnClickListener(alphabetButtonClickListener)
+        binding.m.setOnClickListener(alphabetButtonClickListener)
+        binding.n.setOnClickListener(alphabetButtonClickListener)
+        binding.o.setOnClickListener(alphabetButtonClickListener)
+        binding.p.setOnClickListener(alphabetButtonClickListener)
+        binding.r.setOnClickListener(alphabetButtonClickListener)
+        binding.s.setOnClickListener(alphabetButtonClickListener)
+        binding.t.setOnClickListener(alphabetButtonClickListener)
+        binding.u.setOnClickListener(alphabetButtonClickListener)
+        binding.v.setOnClickListener(alphabetButtonClickListener)
+        binding.w.setOnClickListener(alphabetButtonClickListener)
+        binding.x.setOnClickListener(alphabetButtonClickListener)
+        binding.y.setOnClickListener(alphabetButtonClickListener)
+        binding.z.setOnClickListener(alphabetButtonClickListener)
     }
 
     override fun onDestroyView() {
@@ -48,7 +84,6 @@ class SecondFragment : Fragment() {
         val request = Request.Builder()
             .url("https://random-word-api.herokuapp.com/word?number=1")
             .build()
-
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 // Obsługa błędu pobierania danych z API
