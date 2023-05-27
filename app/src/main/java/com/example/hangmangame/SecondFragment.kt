@@ -30,6 +30,9 @@ class SecondFragment : Fragment() {
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         Log.i("SecondFragment", "t0")
 
+        binding.buttonNewGame.setOnClickListener{
+            resetGame()
+        }
         return binding.root
     }
 
@@ -38,7 +41,7 @@ class SecondFragment : Fragment() {
         Log.i("SecondFragment", "t1")
         // Pobieranie losowego słowa z API
         fetchRandomWord()
-        Thread.sleep(1100)
+        Thread.sleep(850)
         Log.i("SecondFragment", "t2")
         val generatedWordTextView = binding.generatedWord
         val alphabetButtonClickListener = AlphabetButtonClickListener(
@@ -114,5 +117,12 @@ class SecondFragment : Fragment() {
         val regex = """\["(\w+)"\]""".toRegex()
         val matchResult = regex.find(responseData ?: "")
         return matchResult?.groupValues?.get(1)
+    }
+    private fun resetGame() {
+        val fragment = SecondFragment()
+        val fragmentManager = parentFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.container, fragment)
+        fragmentTransaction.commit()
     }
 }
