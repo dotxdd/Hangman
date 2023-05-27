@@ -67,6 +67,7 @@ class SecondFragment : Fragment() {
         binding.s.setOnClickListener(alphabetButtonClickListener)
         binding.t.setOnClickListener(alphabetButtonClickListener)
         binding.u.setOnClickListener(alphabetButtonClickListener)
+        binding.v.setOnClickListener(alphabetButtonClickListener)
         binding.w.setOnClickListener(alphabetButtonClickListener)
         binding.x.setOnClickListener(alphabetButtonClickListener)
         binding.y.setOnClickListener(alphabetButtonClickListener)

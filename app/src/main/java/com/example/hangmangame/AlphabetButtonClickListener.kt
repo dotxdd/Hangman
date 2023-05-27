@@ -45,12 +45,14 @@ class AlphabetButtonClickListener(
 
     private fun updateHangmanImage() {
         val drawableResId = when (wrongGuesses) {
-            1 -> R.drawable.game4
-            2 -> R.drawable.game5
-            3 -> R.drawable.game6
-            4 -> R.drawable.game7
-            5 -> R.drawable.game8
-            6 -> R.drawable.game9
+            1 -> R.drawable.game2
+            2 -> R.drawable.game3
+            3 -> R.drawable.game4
+            4 -> R.drawable.game5
+            5 -> R.drawable.game6
+            6 -> R.drawable.game7
+            7 -> R.drawable.game8
+            8 -> R.drawable.game9
             else -> R.drawable.game1
         }
         hangmanImageView.setImageResource(drawableResId)
