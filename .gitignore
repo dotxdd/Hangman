@@ -1,28 +1,14 @@
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 4c4df3ba4f06c8690f36c910589a50dd9131e3cf
 */.gitignore
 .gradle
 .DS_Store
 
 # built application files
-<<<<<<< HEAD
-*.apk
-*.ap_
-
-# files for the dex VM
-*.dex
-
-=======
 
 *.apk
 *.ap_
 # files for the dex VM
 *.dex
 
->>>>>>> 4c4df3ba4f06c8690f36c910589a50dd9131e3cf
 # Java class files
 *.class
 
