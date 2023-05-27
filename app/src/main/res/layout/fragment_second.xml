@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp"
-            app:constraint_referenced_ids="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, r, s, t, u, w, x ,y, z"
+            app:constraint_referenced_ids="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, r, s, t, u,v, w, x ,y, z"
             app:flow_wrapMode="aligned"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
@@ -352,6 +352,17 @@
             android:background="@color/white"
             android:paddingHorizontal="10dp"
             android:text="@string/u"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            tools:ignore="MissingConstraints"/>
+        <TextView
+            android:id="@+id/v"
+            android:tag="v"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingHorizontal="10dp"
+            android:text="@string/v"
             android:textColor="@color/black"
             android:textSize="24sp"
             tools:ignore="MissingConstraints"/>
