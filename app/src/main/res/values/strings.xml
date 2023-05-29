@@ -57,5 +57,5 @@
     <string name="userNameText">Write your username:</string>
     <string name="userTextField">Set your username</string>
     <string name="plus">+</string>
-    <string name="create">Let start!</string>
+    <string name="create">Save</string>
 </resources>
