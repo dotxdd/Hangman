@@ -31,8 +31,14 @@
         tools:layout="@layout/fragment_second">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_SecondFragment_to_lostGameFragment"
+            app:destination="@id/lostGameFragment"
+            app:popUpTo="@id/FirstFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_SecondFragment_to_wonGameFragment"
+            app:destination="@id/wonGameFragment"
+            app:popUpTo="@id/SecondFragment" />
     </fragment>
     <fragment
         android:id="@+id/userScoreFragment"
@@ -59,4 +65,27 @@
         android:name="com.example.hangmangame.FeedbackFragment"
         android:label="fragment_feedback"
         tools:layout="@layout/fragment_feedback" />
+    <fragment
+        android:id="@+id/lostGameFragment"
+        android:name="com.example.hangmangame.LostGameFragment"
+        android:label="fragment_lost_game"
+        tools:layout="@layout/fragment_lost_game" >
+        <argument
+            android:name="word"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_lostGameFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment"
+            app:popUpTo="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wonGameFragment"
+        android:name="com.example.hangmangame.WonGameFragment"
+        android:label="fragment_won_game"
+        tools:layout="@layout/fragment_won_game" >
+        <action
+            android:id="@+id/action_wonGameFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment"
+            app:popUpTo="@id/FirstFragment" />
+    </fragment>
 </navigation>

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.example.hangmangame.databinding.FragmentSecondBinding
 import okhttp3.*
 import okhttp3.internal.wait
@@ -29,10 +30,10 @@ class SecondFragment : Fragment() {
     ): View? {
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         Log.i("SecondFragment", "t0")
-
         binding.buttonNewGame.setOnClickListener{
             resetGame()
         }
+
         return binding.root
     }
 

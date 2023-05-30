@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 
 class AlphabetButtonClickListener(
     private val randomWord: String,
@@ -27,6 +28,9 @@ class AlphabetButtonClickListener(
         } else {
             wrongGuesses++
             updateHangmanImage()
+            if (wrongGuesses === 9) {
+                view.findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToLostGameFragment(randomWord))
+            }
             Log.i("SecondFragment", "WRONG")
         }
     }
