@@ -73,7 +73,7 @@ class UserProfileFragment : Fragment() {
             // Zapisywanie wybranego obrazka lokalnie
             saveImageLocally(selectedImageBitmap)
 
-            //processUserData(username, selectedImageFile.path)
+            processUserData(username, selectedImageFile.path)
 
             // Wyczyszczenie pola do wpisywania użytkownika
                 usernameEditText.text.clear()
@@ -123,10 +123,10 @@ class UserProfileFragment : Fragment() {
 
 
 
-//    private fun processUserData(username: String, imagePath: String) {
-//        Log.d("Hangman", "Nazwa użytkownika: $username")
-//        Log.d("Hangman", "Ścieżka do obrazka: $imagePath")
-//    }
+    private fun processUserData(username: String, imagePath: String) {
+        Log.d("Hangman", "Nazwa użytkownika: $username")
+        Log.d("Hangman", "Ścieżka do obrazka: $imagePath")
+    }
 
     companion object {
         private const val PICK_IMAGE_REQUEST = 1

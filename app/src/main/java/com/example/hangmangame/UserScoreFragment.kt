@@ -65,7 +65,7 @@ class UserScoreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val userImageView: ImageView = view.findViewById(R.id.userImage)
-        val textViewUserName: TextView = view.findViewById(R.id.textViewUserName)
+
 
         val imagePath: String = "/data/user/0/com.example.hangmangame/cache/selected_image.png"
         val bitmap: Bitmap = BitmapFactory.decodeFile(imagePath)
