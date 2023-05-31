@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -34,7 +35,9 @@ class LostGameFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_lost_game, container, false)
-
+        val word = requireArguments().getString("word")
+        val randomWordTextView = view.findViewById<TextView>(R.id.randomWordTextView)
+        randomWordTextView.text = word
         val imageView = view.findViewById<ImageView>(R.id.iv_image)
         imageView.pivotX = 0.5f
         imageView.pivotY = 0.4f
