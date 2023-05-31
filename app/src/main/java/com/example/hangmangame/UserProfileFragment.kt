@@ -1,20 +1,22 @@
 package com.example.hangmangame
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
+import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -31,12 +33,10 @@ private const val ARG_PARAM2 = "param2"
  */
 @Suppress("UNREACHABLE_CODE")
 class UserProfileFragment : Fragment() {
+    private lateinit var userImageView: ImageView
     private lateinit var usernameEditText: EditText
-    private lateinit var selectImageButton: Button
-    private lateinit var startButton: Button
-
-    private lateinit var selectedImageBitmap: Bitmap
-    private lateinit var selectedImageFile: File
+    private val PICK_IMAGE_REQUEST = 1
+    private var selectedImageBitmap: Bitmap? = null
 
 
     // TODO: Rename and change types of parameters
@@ -51,59 +51,96 @@ class UserProfileFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_user_profile, container, false)
-
-        usernameEditText = view.findViewById(R.id.userSetField)
-        selectImageButton = view.findViewById(R.id.addPictureButton)
-        startButton = view.findViewById(R.id.submitButton)
-
-        selectImageButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, PICK_IMAGE_REQUEST)
-        }
-
-
-        startButton.setOnClickListener {
-            val username = usernameEditText.text.toString()
-
-            // Zapisywanie nazwy użytkownika lokalnie
-            saveUsernameLocally(username)
-
-            // Zapisywanie wybranego obrazka lokalnie
-            saveImageLocally(selectedImageBitmap)
-
-            processUserData(username, selectedImageFile.path)
-
-            // Wyczyszczenie pola do wpisywania użytkownika
-                usernameEditText.text.clear()
-
-        }
-
+        usernameEditText = view.findViewById(R.id.userSetField) // Inicjalizacja usernameEditText
         return view
     }
 
+    @SuppressLint("CutPasteId")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Inicjalizacja widoków
+        val userSetField: EditText = view.findViewById(R.id.userSetField)
+        val addPictureButton: Button = view.findViewById(R.id.addPictureButton)
+        val submitButton: Button = view.findViewById(R.id.submitButton)
+
+        // Pobieranie zapisanych danych
+        val sharedPreferences = requireActivity().getSharedPreferences("HangmanPrefs", Activity.MODE_PRIVATE)
+        val savedUsername = sharedPreferences.getString("username", "")
+        val savedImagePath = sharedPreferences.getString("imagePath", "")
+
+        // Wypełnienie domyślnymi wartościami
+        userSetField.setText(savedUsername)
+
+        // Obsługa przycisku "save"
+        submitButton.setOnClickListener {
+            val username = userSetField.text.toString().trim()
+
+            if (username.isNotEmpty()) {
+                saveUsernameLocally(username)
+                Toast.makeText(requireContext(), "Username saved successfully", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Username cannot be empty", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Obsługa przycisku "add picture"
+        addPictureButton.setOnClickListener {
+            chooseImageFromGallery()
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.type = "image/*"
+            startActivityForResult(intent, PICK_IMAGE_REQUEST)
+        }
+
+        submitButton.setOnClickListener {
+            val username = userSetField.text.toString().trim()
+
+            if (username.isNotEmpty()) {
+                saveUsernameLocally(username)
+                saveChanges()
+                Toast.makeText(requireContext(), "Changes saved successfully", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Username cannot be empty", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+    private fun chooseImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, REQUEST_IMAGE)
+    }
+
+    private fun saveChanges() {
+        val username = usernameEditText.text.toString()
+        saveUsernameLocally(username)
+        saveImageLocally(selectedImageBitmap)
+    }
+
     private fun saveUsernameLocally(username: String) {
-        // Możesz użyć SharedPreferences do zapisu nazwy użytkownika
         val sharedPreferences = requireActivity().getSharedPreferences("HangmanPrefs", Activity.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("username", username)
         editor.apply()
     }
 
-    fun getSavedUserName(): String? {
-        val sharedPreferences = requireActivity().getSharedPreferences("HangmanPrefs", Activity.MODE_PRIVATE)
-        return sharedPreferences.getString("username", null)
-    }
-
-    private fun saveImageLocally(bitmap: Bitmap): String {
-        val directory = requireContext().filesDir // Katalog wewnętrzny aplikacji
-        val file = File(directory, "selected_image.png")
-        val outputStream = FileOutputStream(file)
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-        outputStream.flush()
-        outputStream.close()
-        return file.absolutePath
+    private fun saveImageLocally(bitmap: Bitmap?): String? {
+        if (bitmap != null) {
+            val directory = requireContext().cacheDir
+            val file = File(directory, "selected_image.png")
+            val outputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+            outputStream.flush()
+            outputStream.close()
+            return file.absolutePath
+        }
+        return null
     }
 
 
@@ -111,14 +148,36 @@ class UserProfileFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
-            val selectedImageUri = data?.data
-            selectedImageBitmap = BitmapFactory.decodeStream(requireActivity().contentResolver.openInputStream(selectedImageUri!!))
-
-            // Tworzenie pliku, w którym zostanie zapisane wybrane zdjęcie
-            selectedImageFile = File(requireContext().cacheDir, "selected_image.png")
+        if (requestCode == REQUEST_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
+            val imageUri: Uri? = data.data
+            imageUri?.let {
+                val bitmap: Bitmap? = getBitmapFromUri(it)
+                bitmap?.let {
+                    val imagePath = saveImageLocally(it)
+                    if (imagePath != null) {
+                        saveImagePathLocally(imagePath)
+                    }
+                    Toast.makeText(requireContext(), "Image saved successfully", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
+    }
 
+    private fun getBitmapFromUri(uri: Uri): Bitmap? {
+        return try {
+            val inputStream = requireActivity().contentResolver.openInputStream(uri)
+            BitmapFactory.decodeStream(inputStream)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    private fun saveImagePathLocally(imagePath: String) {
+        val sharedPreferences = requireActivity().getSharedPreferences("HangmanPrefs", Activity.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("imagePath", imagePath)
+        editor.apply()
     }
 
 
@@ -129,7 +188,7 @@ class UserProfileFragment : Fragment() {
     }
 
     companion object {
-        private const val PICK_IMAGE_REQUEST = 1
+        private const val REQUEST_IMAGE = 1
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
