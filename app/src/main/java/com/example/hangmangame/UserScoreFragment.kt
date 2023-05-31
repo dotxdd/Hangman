@@ -24,23 +24,11 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class UserScoreFragment : Fragment() {
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    override fun onResume() {
-        super.onResume()
-        refreshUserScoreFragment()
-    }
-
-    @SuppressLint("SdCardPath")
-    private fun refreshUserScoreFragment() {
-        // Tutaj umieść kod, który odświeża zawartość fragmentu
-        val userImageView: ImageView = requireView().findViewById(R.id.userImage)
-        val imagePath: String = "/data/user/0/com.example.hangmangame/cache/selected_image.png"
-        val bitmap: Bitmap = BitmapFactory.decodeFile(imagePath)
-        userImageView.setImageBitmap(bitmap)
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,37 +39,39 @@ class UserScoreFragment : Fragment() {
         }
     }
 
+    private lateinit var userImageView: ImageView
+    private lateinit var usernameTextView: TextView
+
+    private val defaultImageResId = R.drawable.user_image
+    private val defaultUsername = "Default Username"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_user_score, container, false)
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_score, container, false)
+        userImageView = view.findViewById(R.id.userImage)
+        usernameTextView = view.findViewById(R.id.textViewUserName)
+
+        loadUserProfile()
+
+        return view
     }
 
-    @SuppressLint("SdCardPath")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val userImageView: ImageView = view.findViewById(R.id.userImage)
-        val textViewUserName: TextView = view.findViewById(R.id.textViewUserName)
-
-        val imagePath: String = "/data/user/0/com.example.hangmangame/cache/selected_image.png"
-        val bitmap: Bitmap = BitmapFactory.decodeFile(imagePath)
-        userImageView.setImageBitmap(bitmap)
-
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        val sharedPreferences = requireActivity().getSharedPreferences("HangmanPrefs", Activity.MODE_PRIVATE)
+    private fun loadUserProfile() {
+        val sharedPreferences = requireActivity().getSharedPreferences("HangmanPrefs", 0)
+        val imagePath = sharedPreferences.getString("imagePath", null)
         val username = sharedPreferences.getString("username", null)
-        Log.d("Hangman", "Nazwa użytkownika z SharedPreferences: $username")
 
-        val textViewUserName: TextView = requireView().findViewById(R.id.textViewUserName)
-        textViewUserName.text = username
+        if (imagePath != null) {
+            val bitmap = BitmapFactory.decodeFile(imagePath)
+            userImageView.setImageBitmap(bitmap)
+        } else {
+            userImageView.setImageResource(defaultImageResId)
+        }
+
+        usernameTextView.text = username ?: defaultUsername
     }
 
 
