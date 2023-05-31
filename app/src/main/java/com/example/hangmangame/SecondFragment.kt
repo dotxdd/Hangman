@@ -42,7 +42,7 @@ class SecondFragment : Fragment() {
         Log.i("SecondFragment", "t1")
         // Pobieranie losowego słowa z API
         fetchRandomWord()
-        Thread.sleep(950)
+        Thread.sleep(1000)
         Log.i("SecondFragment", "t2")
         val generatedWordTextView = binding.generatedWord
         val alphabetButtonClickListener = AlphabetButtonClickListener(
@@ -67,6 +67,7 @@ class SecondFragment : Fragment() {
         binding.n.setOnClickListener(alphabetButtonClickListener)
         binding.o.setOnClickListener(alphabetButtonClickListener)
         binding.p.setOnClickListener(alphabetButtonClickListener)
+        binding.q.setOnClickListener(alphabetButtonClickListener)
         binding.r.setOnClickListener(alphabetButtonClickListener)
         binding.s.setOnClickListener(alphabetButtonClickListener)
         binding.t.setOnClickListener(alphabetButtonClickListener)

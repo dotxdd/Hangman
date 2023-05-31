@@ -25,6 +25,10 @@ class AlphabetButtonClickListener(
             guessedLetters.add(letter[0])
             updateGeneratedWordTextView()
             Log.i("SecondFragment", "You are right!")
+
+            if (guessedLetters.size == randomWord.toLowerCase().toSet().size) {
+                view.findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToWonGameFragment(randomWord))
+            }
         } else {
             wrongGuesses++
             updateHangmanImage()
