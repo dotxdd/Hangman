@@ -27,6 +27,44 @@
         app:layout_constraintLeft_toLeftOf="@+id/iv_image"
         app:layout_constraintRight_toRightOf="@+id/iv_image"
  />
+    <TextView
+        android:id="@+id/randomWordTextInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="This is your word: "
+        app:layout_constraintTop_toBottomOf="@+id/hangAgainButton"
+        app:layout_constraintLeft_toLeftOf="@+id/hangAgainButton"
+        app:layout_constraintRight_toRightOf="@+id/hangAgainButton"/>
+    <TextView
+        android:id="@+id/randomWordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/randomWordTextInfo"
+        app:layout_constraintLeft_toLeftOf="@+id/randomWordTextInfo"
+        app:layout_constraintRight_toRightOf="@+id/randomWordTextInfo"/>
 
+    <TextView
+        android:id="@+id/randomWordTextHappy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Try again it costs nothing! "
+        app:layout_constraintTop_toBottomOf="@+id/randomWordTextView"
+        app:layout_constraintLeft_toLeftOf="@+id/randomWordTextView"
+        app:layout_constraintRight_toRightOf="@+id/randomWordTextView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
