@@ -15,6 +15,7 @@
     <string name="lost">You lost!</string>
     <string name="won">You won!</string>
     <string name="buttonNewGame">Start New Game</string>
+    <string name="buttonDefinition">Word Definition</string>
     <string name="a">A</string>
     <string name="b">B</string>
     <string name="c">C</string>

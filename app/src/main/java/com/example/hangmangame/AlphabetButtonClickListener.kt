@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 
 class AlphabetButtonClickListener(
-    private val randomWord: String,
+    private var randomWord: String,
     private val generatedWordTextView: TextView,
     private val hangmanImageView: ImageView
+
 ) : View.OnClickListener {
 
     private val guessedLetters = mutableListOf<Char>()
@@ -65,4 +66,11 @@ class AlphabetButtonClickListener(
         }
         hangmanImageView.setImageResource(drawableResId)
     }
+    fun resetGame() {
+        guessedLetters.clear()
+        wrongGuesses = 0
+        updateGeneratedWordTextView()
+        updateHangmanImage()
+    }
+
 }
