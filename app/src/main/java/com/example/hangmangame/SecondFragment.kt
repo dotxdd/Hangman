@@ -5,30 +5,41 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+<<<<<<< HEAD
 import androidx.navigation.Navigation.findNavController
+=======
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+>>>>>>> main
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.hangmangame.databinding.FragmentSecondBinding
 import okhttp3.*
-import okhttp3.internal.wait
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 import java.io.IOException
 
+<<<<<<< HEAD
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 
+=======
+>>>>>>> main
 class SecondFragment : Fragment() {
 
 
     private var _binding: FragmentSecondBinding? = null
     private val binding get() = _binding!!
 
-
     private var randomWord: String? = null
+    private lateinit var alphabetButtonClickListener: AlphabetButtonClickListener
 
 
     override fun onCreateView(
@@ -36,56 +47,66 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
-        Log.i("SecondFragment", "t0")
-        binding.buttonNewGame.setOnClickListener{
+        binding.buttonNewGame.setOnClickListener {
             resetGame()
         }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> main
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+<<<<<<< HEAD
         Log.i("SecondFragment", "t1")
 
         // Pobieranie losowego słowa z API
+=======
+>>>>>>> main
         fetchRandomWord()
+
         Thread.sleep(1000)
-        Log.i("SecondFragment", "t2")
-        val generatedWordTextView = binding.generatedWord
-        val alphabetButtonClickListener = AlphabetButtonClickListener(
+        Log.i("SecondFragment", "$randomWord")
+        binding.buttonDefinition.setOnClickListener {
+            randomWord?.let { word ->
+                val apiUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/$word"
+                val client = OkHttpClient()
+                val request = Request.Builder()
+                    .url(apiUrl)
+                    .build()
+                client.newCall(request).enqueue(object : Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onResponse(call: Call, response: Response) {
+                        val responseData = response.body?.string()
+                        val definition = extractDefinition(responseData)
+                        activity?.runOnUiThread {
+                            Toast.makeText(context, definition, Toast.LENGTH_LONG).show()
+                        }
+                    }
+                })
+            }
+        }
+        alphabetButtonClickListener = AlphabetButtonClickListener(
             randomWord ?: "",
             binding.generatedWord,
             binding.imgView
         )
 
-        binding.a.setOnClickListener(alphabetButtonClickListener)
-        binding.b.setOnClickListener(alphabetButtonClickListener)
-        binding.c.setOnClickListener(alphabetButtonClickListener)
-        binding.d.setOnClickListener(alphabetButtonClickListener)
-        binding.e.setOnClickListener(alphabetButtonClickListener)
-        binding.f.setOnClickListener(alphabetButtonClickListener)
-        binding.g.setOnClickListener(alphabetButtonClickListener)
-        binding.h.setOnClickListener(alphabetButtonClickListener)
-        binding.i.setOnClickListener(alphabetButtonClickListener)
-        binding.j.setOnClickListener(alphabetButtonClickListener)
-        binding.k.setOnClickListener(alphabetButtonClickListener)
-        binding.l.setOnClickListener(alphabetButtonClickListener)
-        binding.m.setOnClickListener(alphabetButtonClickListener)
-        binding.n.setOnClickListener(alphabetButtonClickListener)
-        binding.o.setOnClickListener(alphabetButtonClickListener)
-        binding.p.setOnClickListener(alphabetButtonClickListener)
-        binding.q.setOnClickListener(alphabetButtonClickListener)
-        binding.r.setOnClickListener(alphabetButtonClickListener)
-        binding.s.setOnClickListener(alphabetButtonClickListener)
-        binding.t.setOnClickListener(alphabetButtonClickListener)
-        binding.u.setOnClickListener(alphabetButtonClickListener)
-        binding.v.setOnClickListener(alphabetButtonClickListener)
-        binding.w.setOnClickListener(alphabetButtonClickListener)
-        binding.x.setOnClickListener(alphabetButtonClickListener)
-        binding.y.setOnClickListener(alphabetButtonClickListener)
-        binding.z.setOnClickListener(alphabetButtonClickListener)
+        val alphabetButtons = listOf(
+            binding.a, binding.b, binding.c, binding.d, binding.e, binding.f, binding.g, binding.h,
+            binding.i, binding.j, binding.k, binding.l, binding.m, binding.n, binding.o, binding.p,
+            binding.q, binding.r, binding.s, binding.t, binding.u, binding.v, binding.w, binding.x,
+            binding.y, binding.z
+        )
+        alphabetButtons.forEach { button ->
+            button.setOnClickListener(alphabetButtonClickListener)
+        }
     }
 
 
@@ -102,19 +123,14 @@ class SecondFragment : Fragment() {
             .build()
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                // Obsługa błędu pobierania danych z API
                 e.printStackTrace()
             }
 
             override fun onResponse(call: Call, response: Response) {
                 val responseData = response.body?.string()
                 randomWord = extractRandomWord(responseData)
-
-                // Logowanie pobranego słowa
                 randomWord?.let {
                     val wordLength = it.length
-                    Log.i("SecondFragment", "Pobrane słowo: $it")
-                    Log.i("SecondFragment", "Pobrane słowo długość: $wordLength")
                     val underscoreText = "_ ".repeat(wordLength)
                     activity?.runOnUiThread {
                         binding.generatedWord.text = underscoreText
@@ -129,20 +145,60 @@ class SecondFragment : Fragment() {
 
 
     private fun extractRandomWord(responseData: String?): String? {
-        // Wyodrębnij losowe słowo z odpowiedzi API
         val regex = """\["(\w+)"\]""".toRegex()
         val matchResult = regex.find(responseData ?: "")
         return matchResult?.groupValues?.get(1)
     }
-    private fun resetGame() {
-        val fragment = SecondFragment()
-        val fragmentManager = parentFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.container, fragment)
-        fragmentTransaction.commit()
+
+    private fun extractDefinition(responseData: String?): String {
+        try {
+            val jsonObject = JSONObject(responseData)
+            val errorMessage = jsonObject.getString("message")
+            return "Error: $errorMessage"
+        } catch (e: JSONException) {
+            val jsonArray = JSONArray(responseData)
+            if (jsonArray.length() > 0) {
+                val jsonObject = jsonArray.getJSONObject(0)
+                val meaningsArray = jsonObject.getJSONArray("meanings")
+                if (meaningsArray.length() > 0) {
+                    val firstMeaning = meaningsArray.getJSONObject(0)
+                    val definitionsArray = firstMeaning.getJSONArray("definitions")
+                    if (definitionsArray.length() > 0) {
+                        val firstDefinition = definitionsArray.getJSONObject(0)
+                        return firstDefinition.getString("definition")
+                    }
+                }
+            }
+            return "Definition not found"
+        }
     }
 
+<<<<<<< HEAD
 
 
 
 }
+=======
+    private fun resetGame() {
+        randomWord = null
+        binding.generatedWord.text = ""
+
+        val alphabetButtons = listOf(
+            binding.a, binding.b, binding.c, binding.d, binding.e, binding.f, binding.g, binding.h,
+            binding.i, binding.j, binding.k, binding.l, binding.m, binding.n, binding.o, binding.p,
+            binding.q, binding.r, binding.s, binding.t, binding.u, binding.v, binding.w, binding.x,
+            binding.y, binding.z
+        )
+        alphabetButtons.forEach { button ->
+            button.isEnabled = true
+            button.setBackgroundColor(Color.WHITE)
+        }
+
+        binding.imgView.setImageResource(R.drawable.game1)
+        alphabetButtonClickListener.resetGame()
+
+        fetchRandomWord()
+        Thread.sleep(1000)
+    }
+}
+>>>>>>> main
