@@ -1,8 +1,6 @@
 package com.example.hangmangame
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.graphics.Bitmap
+import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -13,37 +11,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [UserScoreFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class UserScoreFragment : Fragment() {
 
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     private lateinit var userImageView: ImageView
     private lateinit var usernameTextView: TextView
+    private lateinit var userScoreTextView: TextView
+    private var userScore = 0
 
     private val defaultImageResId = R.drawable.user_image
     private val defaultUsername = "Default Username"
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,16 +31,28 @@ class UserScoreFragment : Fragment() {
 
         userImageView = view.findViewById(R.id.userImage)
         usernameTextView = view.findViewById(R.id.textViewUserName)
-
+        userScoreTextView = view.findViewById(R.id.userScoreTextView)
+        updateScoreText()
         loadUserProfile()
-
         return view
     }
+
+    private fun updateScoreText() {
+        val score = getUserScoreFromPreferences() // Pobierz aktualną wartość userScore z preferencji
+        val scoreText = resources.getString(R.string.user_score, score)
+        userScoreTextView.text = scoreText
+    }
+
+    private fun getUserScoreFromPreferences(): Int {
+        val sharedPreferences = requireContext().getSharedPreferences("HangmanPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getInt("userScore", 0)
+    }
+
 
     private fun loadUserProfile() {
         val sharedPreferences = requireActivity().getSharedPreferences("HangmanPrefs", 0)
         val imagePath = sharedPreferences.getString("imagePath", null)
-        val username = sharedPreferences.getString("username", null)
+        val username = sharedPreferences.getString("username", defaultUsername)
 
         if (imagePath != null) {
             val bitmap = BitmapFactory.decodeFile(imagePath)
@@ -71,12 +61,11 @@ class UserScoreFragment : Fragment() {
             userImageView.setImageResource(defaultImageResId)
         }
 
-        usernameTextView.text = username ?: defaultUsername
+        usernameTextView.text = username
     }
 
 
     companion object {
-
         private const val ARG_IMAGE_PATH = "image_path"
 
         fun newInstance(imagePath: String): UserScoreFragment {
@@ -86,22 +75,6 @@ class UserScoreFragment : Fragment() {
             fragment.arguments = bundle
             return fragment
         }
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UserScoreFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UserScoreFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
+

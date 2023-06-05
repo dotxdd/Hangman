@@ -38,5 +38,35 @@
         android:textSize="25sp"
         android:textColor="@color/white"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userScoreTextView"
+        android:layout_below="@id/textViewUserName"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userScoreTextView"
+        android:id="@+id/gameStateTextView"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="200dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userScoreTextView"
+        android:layout_centerHorizontal="false"
+        android:id="@+id/generatedWord"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="100dp"
+        />
 
 </RelativeLayout>

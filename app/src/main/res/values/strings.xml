@@ -60,4 +60,6 @@
     <string name="userTextField">Set your username</string>
     <string name="plus">+</string>
     <string name="create">Save</string>
+    <string name="user_score">User Score: %d</string>
+
 </resources>
