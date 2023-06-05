@@ -1,16 +1,20 @@
 package com.example.hangmangame
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.hangmangame.databinding.FragmentSecondBinding
 import okhttp3.*
 import org.json.JSONArray
@@ -18,13 +22,18 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 
+/**
+ * A simple [Fragment] subclass as the second destination in the navigation.
+ */
 class SecondFragment : Fragment() {
+
 
     private var _binding: FragmentSecondBinding? = null
     private val binding get() = _binding!!
 
     private var randomWord: String? = null
     private lateinit var alphabetButtonClickListener: AlphabetButtonClickListener
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,11 +43,15 @@ class SecondFragment : Fragment() {
         binding.buttonNewGame.setOnClickListener {
             resetGame()
         }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.i("SecondFragment", "t1")
+
+        // Pobieranie losowego słowa z API
         fetchRandomWord()
 
         Thread.sleep(1000)
@@ -82,6 +95,8 @@ class SecondFragment : Fragment() {
         }
     }
 
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -107,10 +122,13 @@ class SecondFragment : Fragment() {
                         binding.generatedWord.text = underscoreText
                         binding.generatedWord.visibility = View.VISIBLE
                     }
+
                 }
+
             }
         })
     }
+
 
     private fun extractRandomWord(responseData: String?): String? {
         val regex = """\["(\w+)"\]""".toRegex()
@@ -162,4 +180,10 @@ class SecondFragment : Fragment() {
         fetchRandomWord()
         Thread.sleep(1000)
     }
+
+
+
 }
+
+}
+
