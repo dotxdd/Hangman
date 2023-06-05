@@ -8,14 +8,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-<<<<<<< HEAD
+
 import androidx.navigation.Navigation.findNavController
-=======
+
+import androidx.navigation.Navigation.findNavController
+
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
->>>>>>> main
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.hangmangame.databinding.FragmentSecondBinding
@@ -25,13 +26,14 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 
-<<<<<<< HEAD
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 
-=======
->>>>>>> main
+/**
+ * A simple [Fragment] subclass as the second destination in the navigation.
+ */
+
 class SecondFragment : Fragment() {
 
 
@@ -50,22 +52,21 @@ class SecondFragment : Fragment() {
         binding.buttonNewGame.setOnClickListener {
             resetGame()
         }
-<<<<<<< HEAD
 
-
-=======
->>>>>>> main
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-<<<<<<< HEAD
+
         Log.i("SecondFragment", "t1")
 
         // Pobieranie losowego słowa z API
-=======
->>>>>>> main
+
+        Log.i("SecondFragment", "t1")
+
+        // Pobieranie losowego słowa z API
+
         fetchRandomWord()
 
         Thread.sleep(1000)
@@ -172,13 +173,6 @@ class SecondFragment : Fragment() {
             return "Definition not found"
         }
     }
-
-<<<<<<< HEAD
-
-
-
-}
-=======
     private fun resetGame() {
         randomWord = null
         binding.generatedWord.text = ""
@@ -200,5 +194,8 @@ class SecondFragment : Fragment() {
         fetchRandomWord()
         Thread.sleep(1000)
     }
+
+
 }
->>>>>>> main
+
+
