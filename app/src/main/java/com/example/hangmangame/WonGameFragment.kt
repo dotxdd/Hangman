@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,10 +36,11 @@ class WonGameFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
+        (activity as AppCompatActivity).supportActionBar?.title = "You won!"
         val view = inflater.inflate(R.layout.fragment_won_game, container, false)
-
-
+        val word = requireArguments().getString("word")
+        val randomWordTextView = view.findViewById<TextView>(R.id.randomWordTextView)
+        randomWordTextView.text = word
         val imageView = view.findViewById<ImageView>(R.id.iv_image)
         imageView.pivotX = 0.5f
         imageView.pivotY = 0.4f
