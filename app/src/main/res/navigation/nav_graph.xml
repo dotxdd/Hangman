@@ -38,6 +38,10 @@
             android:id="@+id/action_SecondFragment_to_wonGameFragment"
             app:destination="@id/wonGameFragment"
             app:popUpTo="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_self"
+            app:destination="@id/SecondFragment"
+            app:popUpTo="@id/FirstFragment" />
     </fragment>
     <fragment
         android:id="@+id/userScoreFragment"

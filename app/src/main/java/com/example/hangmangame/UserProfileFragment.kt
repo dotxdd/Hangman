@@ -17,6 +17,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -55,6 +56,7 @@ class UserProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).supportActionBar?.title = "User"
         val view = inflater.inflate(R.layout.fragment_user_profile, container, false)
         usernameEditText = view.findViewById(R.id.userSetField) // Inicjalizacja usernameEditText
         return view
@@ -63,6 +65,7 @@ class UserProfileFragment : Fragment() {
     @SuppressLint("CutPasteId")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         // Inicjalizacja widoków
         val userSetField: EditText = view.findViewById(R.id.userSetField)

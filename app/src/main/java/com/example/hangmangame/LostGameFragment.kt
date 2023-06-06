@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,15 +26,10 @@ class LostGameFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+        (activity as AppCompatActivity).supportActionBar?.title = "You Lost"
         val view = inflater.inflate(R.layout.fragment_lost_game, container, false)
         val word = requireArguments().getString("word")
         val randomWordTextView = view.findViewById<TextView>(R.id.randomWordTextView)
