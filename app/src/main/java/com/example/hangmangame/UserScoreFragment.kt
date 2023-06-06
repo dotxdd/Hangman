@@ -17,9 +17,15 @@ import android.widget.TextView
 import org.json.JSONArray
 import org.json.JSONObject
 
+<<<<<<< HEAD
 
 import androidx.appcompat.app.AppCompatActivity
 
+=======
+import androidx.appcompat.app.AppCompatActivity
+
+
+>>>>>>> f98d2009516ef4fa5eac88cec550d3be46a06890
 
 class UserScoreFragment : Fragment() {
 

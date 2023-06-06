@@ -6,10 +6,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f98d2009516ef4fa5eac88cec550d3be46a06890
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.Navigation.findNavController
 import android.widget.ImageView
 import android.widget.TextView
+<<<<<<< HEAD
+=======
+
+>>>>>>> f98d2009516ef4fa5eac88cec550d3be46a06890
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -28,11 +37,15 @@ import java.util.Locale
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 
+
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f98d2009516ef4fa5eac88cec550d3be46a06890
 class SecondFragment : Fragment() {
     private var _binding: FragmentSecondBinding? = null
     private val binding get() = _binding!!
@@ -63,8 +76,15 @@ class SecondFragment : Fragment() {
 
         // Pobieranie losowego słowa z API
 
+<<<<<<< HEAD
 
         // Fetch random word from API
+=======
+
+
+        // Fetch random word from API
+
+>>>>>>> f98d2009516ef4fa5eac88cec550d3be46a06890
         fetchRandomWord()
         Thread.sleep(1000)
 
@@ -173,11 +193,19 @@ class SecondFragment : Fragment() {
         view?.findNavController()?.navigate(R.id.action_SecondFragment_self)
         Thread.sleep(1000)
 
-    }
 
+    }
+<<<<<<< HEAD
+
+=======
+>>>>>>> f98d2009516ef4fa5eac88cec550d3be46a06890
 
 
 }
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f98d2009516ef4fa5eac88cec550d3be46a06890
