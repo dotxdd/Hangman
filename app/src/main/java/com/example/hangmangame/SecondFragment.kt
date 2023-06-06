@@ -1,20 +1,15 @@
 package com.example.hangmangame
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation.findNavController
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.hangmangame.databinding.FragmentSecondBinding
 import okhttp3.*
 import org.json.JSONArray
@@ -22,40 +17,33 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class SecondFragment : Fragment() {
-
-
     private var _binding: FragmentSecondBinding? = null
     private val binding get() = _binding!!
 
     private var randomWord: String? = null
     private lateinit var alphabetButtonClickListener: AlphabetButtonClickListener
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).supportActionBar?.title = "Hanging Time"
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         binding.buttonNewGame.setOnClickListener {
             resetGame()
         }
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.i("SecondFragment", "t1")
 
-        // Pobieranie losowego słowa z API
+        // Fetch random word from API
         fetchRandomWord()
-
         Thread.sleep(1000)
-        Log.i("SecondFragment", "$randomWord")
+
+
         binding.buttonDefinition.setOnClickListener {
             randomWord?.let { word ->
                 val apiUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/$word"
@@ -78,6 +66,7 @@ class SecondFragment : Fragment() {
                 })
             }
         }
+
         alphabetButtonClickListener = AlphabetButtonClickListener(
             randomWord ?: "",
             binding.generatedWord,
@@ -94,8 +83,6 @@ class SecondFragment : Fragment() {
             button.setOnClickListener(alphabetButtonClickListener)
         }
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -122,13 +109,10 @@ class SecondFragment : Fragment() {
                         binding.generatedWord.text = underscoreText
                         binding.generatedWord.visibility = View.VISIBLE
                     }
-
                 }
-
             }
         })
     }
-
 
     private fun extractRandomWord(responseData: String?): String? {
         val regex = """\["(\w+)"\]""".toRegex()
@@ -160,30 +144,9 @@ class SecondFragment : Fragment() {
     }
 
     private fun resetGame() {
-        randomWord = null
-        binding.generatedWord.text = ""
 
-        val alphabetButtons = listOf(
-            binding.a, binding.b, binding.c, binding.d, binding.e, binding.f, binding.g, binding.h,
-            binding.i, binding.j, binding.k, binding.l, binding.m, binding.n, binding.o, binding.p,
-            binding.q, binding.r, binding.s, binding.t, binding.u, binding.v, binding.w, binding.x,
-            binding.y, binding.z
-        )
-        alphabetButtons.forEach { button ->
-            button.isEnabled = true
-            button.setBackgroundColor(Color.WHITE)
-        }
-
-        binding.imgView.setImageResource(R.drawable.game1)
-        alphabetButtonClickListener.resetGame()
-
-        fetchRandomWord()
+        // New Instance of Second fragment
+        view?.findNavController()?.navigate(R.id.action_SecondFragment_self)
         Thread.sleep(1000)
     }
-
-
-
 }
-
-}
-

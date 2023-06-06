@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class UserScoreFragment : Fragment() {
 
@@ -27,8 +28,8 @@ class UserScoreFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).supportActionBar?.title = "Score"
         val view = inflater.inflate(R.layout.fragment_user_score, container, false)
-
         userImageView = view.findViewById(R.id.userImage)
         usernameTextView = view.findViewById(R.id.textViewUserName)
         userScoreTextView = view.findViewById(R.id.userScoreTextView)

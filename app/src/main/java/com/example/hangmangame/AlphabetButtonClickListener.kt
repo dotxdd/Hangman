@@ -41,6 +41,7 @@ class AlphabetButtonClickListener(
     }
 
     private fun updateGeneratedWordTextView() {
+        Log.i("WORD", "$randomWord")
         val updatedWord = StringBuilder()
         for (char in randomWord.toLowerCase()) {
             if (guessedLetters.contains(char)) {
