@@ -1,6 +1,7 @@
 package com.example.hangmangame
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -9,14 +10,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TableLayout
+import android.widget.TableRow
 import android.widget.TextView
+import org.json.JSONArray
+import org.json.JSONObject
+
 
 class UserScoreFragment : Fragment() {
-
 
     private lateinit var userImageView: ImageView
     private lateinit var usernameTextView: TextView
     private lateinit var userScoreTextView: TextView
+
     private var userScore = 0
 
     private val defaultImageResId = R.drawable.user_image
@@ -36,6 +42,9 @@ class UserScoreFragment : Fragment() {
         loadUserProfile()
         return view
     }
+
+
+
 
     private fun updateScoreText() {
         val score = getUserScoreFromPreferences() // Pobierz aktualną wartość userScore z preferencji

@@ -25,6 +25,9 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -66,6 +69,7 @@ class SecondFragment : Fragment() {
         Log.i("SecondFragment", "t1")
 
         // Pobieranie losowego słowa z API
+
 
         fetchRandomWord()
 
@@ -193,6 +197,7 @@ class SecondFragment : Fragment() {
 
         fetchRandomWord()
         Thread.sleep(1000)
+
     }
 
 
