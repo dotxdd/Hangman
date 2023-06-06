@@ -1,5 +1,7 @@
 package com.example.hangmangame
 
+
+
 import android.graphics.Color
 import android.util.Log
 import android.view.View
@@ -10,12 +12,13 @@ import androidx.navigation.findNavController
 class AlphabetButtonClickListener(
     private var randomWord: String,
     private val generatedWordTextView: TextView,
-    private val hangmanImageView: ImageView
+    private val hangmanImageView: ImageView,
 
 ) : View.OnClickListener {
 
     private val guessedLetters = mutableListOf<Char>()
     private var wrongGuesses = 0
+
 
     override fun onClick(view: View) {
         view.isEnabled = false
@@ -73,5 +76,7 @@ class AlphabetButtonClickListener(
         updateGeneratedWordTextView()
         updateHangmanImage()
     }
+
+
 
 }

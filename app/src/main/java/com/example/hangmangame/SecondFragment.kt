@@ -6,6 +6,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
+
+import androidx.navigation.Navigation.findNavController
+
+import androidx.navigation.Navigation.findNavController
+
+import android.widget.ImageView
+import android.widget.TextView
+
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -16,6 +25,18 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+
+/**
+ * A simple [Fragment] subclass as the second destination in the navigation.
+ */
+
+
+/**
+ * A simple [Fragment] subclass as the second destination in the navigation.
+ */
 
 class SecondFragment : Fragment() {
     private var _binding: FragmentSecondBinding? = null
@@ -39,7 +60,18 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Log.i("SecondFragment", "t1")
+
+        // Pobieranie losowego słowa z API
+
+        Log.i("SecondFragment", "t1")
+
+        // Pobieranie losowego słowa z API
+
+
+
         // Fetch random word from API
+
         fetchRandomWord()
         Thread.sleep(1000)
 
@@ -142,11 +174,18 @@ class SecondFragment : Fragment() {
             return "Definition not found"
         }
     }
-
     private fun resetGame() {
 
         // New Instance of Second fragment
         view?.findNavController()?.navigate(R.id.action_SecondFragment_self)
         Thread.sleep(1000)
+
+
     }
+
+
 }
+
+
+
+
