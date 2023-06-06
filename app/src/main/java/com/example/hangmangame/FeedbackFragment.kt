@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
 import java.io.IOException
 import com.example.hangmangame.ValidationClass
@@ -32,6 +33,7 @@ class FeedbackFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).supportActionBar?.title = "Feedback"
         val view = inflater.inflate(R.layout.fragment_feedback, container, false)
 
         val emailField = view.findViewById<EditText>(R.id.editTextTextEmailAddress3)
