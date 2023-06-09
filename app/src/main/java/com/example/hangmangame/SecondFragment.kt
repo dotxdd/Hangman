@@ -6,15 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-
 import androidx.navigation.Navigation.findNavController
-
 import androidx.navigation.Navigation.findNavController
-
 import android.widget.ImageView
 import android.widget.TextView
-
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -67,6 +62,10 @@ class SecondFragment : Fragment() {
         Log.i("SecondFragment", "t1")
 
         // Pobieranie losowego słowa z API
+
+
+
+        // Fetch random word from API
 
 
 
@@ -184,8 +183,7 @@ class SecondFragment : Fragment() {
     }
 
 
+
 }
-
-
 
 
