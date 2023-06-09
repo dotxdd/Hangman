@@ -1,5 +1,7 @@
 package com.example.hangmangame
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +12,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import org.json.JSONArray
+import org.json.JSONException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,11 +64,57 @@ class LostGameFragment : Fragment() {
             view: View->view.findNavController().navigate(R.id.action_lostGameFragment_to_SecondFragment)
         }
 
+        val currentDate = getCurrentDate()
+        val gameHistory = "$currentDate Lost"
+        if (word != null) {
+            saveGameHistory(gameHistory, word)
+        }
+
+
 
         return view
     }
 
 
+    private fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+        val currentDate = Date()
+        return dateFormat.format(currentDate)
+    }
+
+    private fun saveGameHistory(gameHistory: String, word: String) {
+        val sharedPreferences = requireContext().getSharedPreferences("HangmanPrefs", Context.MODE_PRIVATE)
+        val historyList = getGameHistoryList(sharedPreferences)
+
+        if (historyList.size >= 3) {
+            historyList.removeAt(0) // Usuń najstarszą historię, jeśli już jest 3
+        }
+
+        historyList.add("$gameHistory $word") // Dodaj nową historię do listy
+
+        val editor = sharedPreferences.edit()
+        editor.putString("gameHistory", JSONArray(historyList).toString())
+        editor.apply()
+    }
+
+    private fun getGameHistoryList(sharedPreferences: SharedPreferences): MutableList<String> {
+        val historyJson = sharedPreferences.getString("gameHistory", null)
+        val historyList = mutableListOf<String>()
+
+        if (historyJson != null) {
+            try {
+                val jsonArray = JSONArray(historyJson)
+                for (i in 0 until jsonArray.length()) {
+                    val history = jsonArray.getString(i)
+                    historyList.add(history)
+                }
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+        return historyList
+    }
 
     companion object {
         /**
@@ -73,12 +126,10 @@ class LostGameFragment : Fragment() {
          * @return A new instance of fragment LostGameFragment.
          */
         // TODO: Rename and change types and number of parameters
-        @JvmStatic fun newInstance(param1: String, param2: String) =
-                LostGameFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
+        @JvmStatic fun newInstance(word: String) = LostGameFragment().apply {
+            arguments = Bundle().apply {
+                putString("word", word)
+            }
+        }
     }
 }

@@ -16,22 +16,16 @@ import android.widget.TextView
 
 import org.json.JSONArray
 import org.json.JSONObject
-
-<<<<<<< HEAD
-
 import androidx.appcompat.app.AppCompatActivity
+import org.json.JSONException
 
-=======
-import androidx.appcompat.app.AppCompatActivity
-
-
->>>>>>> f98d2009516ef4fa5eac88cec550d3be46a06890
 
 class UserScoreFragment : Fragment() {
 
     private lateinit var userImageView: ImageView
     private lateinit var usernameTextView: TextView
     private lateinit var userScoreTextView: TextView
+    private lateinit var gameHistoryTable: TableLayout
 
     private var userScore = 0
 
@@ -48,12 +42,31 @@ class UserScoreFragment : Fragment() {
         userImageView = view.findViewById(R.id.userImage)
         usernameTextView = view.findViewById(R.id.textViewUserName)
         userScoreTextView = view.findViewById(R.id.userScoreTextView)
+        gameHistoryTable = view.findViewById(R.id.gameHistoryTable)
+        populateGameHistoryTable()
         updateScoreText()
         loadUserProfile()
         return view
     }
 
+    private fun getGameHistoryList(sharedPreferences: SharedPreferences): MutableList<String> {
+        val historyJson = sharedPreferences.getString("gameHistory", null)
+        val historyList = mutableListOf<String>()
 
+        if (historyJson != null) {
+            try {
+                val jsonArray = JSONArray(historyJson)
+                for (i in 0 until jsonArray.length()) {
+                    val history = jsonArray.getString(i)
+                    historyList.add(history)
+                }
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+        return historyList
+    }
 
 
     private fun updateScoreText() {
@@ -81,6 +94,33 @@ class UserScoreFragment : Fragment() {
         }
 
         usernameTextView.text = username
+    }
+    private fun populateGameHistoryTable() {
+        val sharedPreferences = requireContext().getSharedPreferences("HangmanPrefs", Context.MODE_PRIVATE)
+        val historyList = getGameHistoryList(sharedPreferences)
+
+        for (i in historyList.indices) {
+            val gameHistory = historyList[i]
+            val historyRow = TableRow(requireContext())
+
+            val historyDateView = TextView(requireContext())
+            historyDateView.text = gameHistory.substringBefore(" ")
+            historyDateView.setPadding(10, 0, 10, 0)
+
+            val historyResultView = TextView(requireContext())
+            historyResultView.text = gameHistory.substringAfter(" ").substringBefore(" ")
+            historyResultView.setPadding(10, 0, 10, 0)
+
+            val historyWordView = TextView(requireContext())
+            historyWordView.text = gameHistory.substringAfterLast(" ")
+            historyWordView.setPadding(10, 0, 10, 0)
+
+            historyRow.addView(historyDateView)
+            historyRow.addView(historyWordView)
+            historyRow.addView(historyResultView)
+
+            gameHistoryTable.addView(historyRow)
+        }
     }
 
 
