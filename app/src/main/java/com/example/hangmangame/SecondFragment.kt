@@ -65,14 +65,9 @@ class SecondFragment : Fragment() {
 
 
 
-        // Fetch random word from API
-
-
-
-        // Fetch random word from API
 
         fetchRandomWord()
-        Thread.sleep(1000)
+        Thread.sleep(1500)
 
 
         binding.buttonDefinition.setOnClickListener {

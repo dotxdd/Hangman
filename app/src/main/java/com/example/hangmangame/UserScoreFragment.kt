@@ -3,6 +3,7 @@ package com.example.hangmangame
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -106,14 +107,17 @@ class UserScoreFragment : Fragment() {
             val historyDateView = TextView(requireContext())
             historyDateView.text = gameHistory.substringBefore(" ")
             historyDateView.setPadding(10, 0, 10, 0)
+            historyDateView.setTextColor(Color.YELLOW)
 
             val historyResultView = TextView(requireContext())
             historyResultView.text = gameHistory.substringAfter(" ").substringBefore(" ")
             historyResultView.setPadding(10, 0, 10, 0)
+            historyResultView.setTextColor(Color.YELLOW)
 
             val historyWordView = TextView(requireContext())
             historyWordView.text = gameHistory.substringAfterLast(" ")
             historyWordView.setPadding(10, 0, 10, 0)
+            historyWordView.setTextColor(Color.YELLOW)
 
             historyRow.addView(historyDateView)
             historyRow.addView(historyWordView)
