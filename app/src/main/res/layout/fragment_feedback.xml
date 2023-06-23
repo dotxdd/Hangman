@@ -19,6 +19,7 @@
         android:textColor="@color/white"
         android:inputType="textEmailAddress"
         android:autofillHints="emailAddress"
+        android:textColorHint="@color/white"
         />
 
     <EditText
@@ -33,6 +34,8 @@
         android:textColor="@color/white"
         android:inputType="textMultiLine"
         android:autofillHints="message"
+        android:textColorHint="@color/white"
+
         />
 
     <Button
