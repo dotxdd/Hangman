@@ -1,4 +1,4 @@
 # Hangman
 download repo
-add clickup api key
+add my apiclickupkey :D 
 see the magic!
